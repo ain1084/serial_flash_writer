@@ -1,2 +1,2 @@
 # serial_flash_writer
-Serial SPI Flash Writer for pyboard.
+Serial flash memory writer using pyboard.
