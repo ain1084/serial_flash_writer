@@ -1,5 +1,6 @@
-import os
+from micropython import const
 from machine import SPI
+import os
 import serial_flash_accessor
 
 def from_file(name: str, hint: str = None):
@@ -22,7 +23,7 @@ def from_file(name: str, hint: str = None):
 
     is_protect = flash.is_protect()
     if is_protect:
-        print('Unprotect memory.')
+        print('Remove memory protection.')
         flash.set_protect(False)
 
     print('Erasing...')
@@ -33,17 +34,17 @@ def from_file(name: str, hint: str = None):
         read_buffer = memoryview(bytearray(buffer_size))
         address = 0
         while True:
-            readed = file.readinto(file_buffer)
-            if readed == 0:
+            read_count = file.readinto(file_buffer)
+            if read_count == 0:
                 if is_protect:
-                    print('Protect memory.')
+                    print('Restore memory protection.')
                     flash.set_protect(True)
                 print('Completed.')
                 return
-            print('Writing: {0:06x}-{1:06x}'.format(address, address + readed - 1))
-            flash.write(address, file_buffer[:readed])
-            flash.read(address, read_buffer[:readed])
+            print('Writing: 0x{0:06x}-0x{1:06x}'.format(address, address + read_count - 1))
+            flash.write(address, file_buffer[:read_count])
+            flash.read(address, read_buffer[:read_count])
             if file_buffer != read_buffer:
                 print('Verify error')
                 return
-            address += readed
+            address += read_count
