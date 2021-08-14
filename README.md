@@ -23,7 +23,7 @@ pyboard から Serial flash memory への書き込みを行う python script で
 
 serial_flash_writer.py で想定している結線は以下の通りです(8pin SPI Flash の場合)。
 
-![connection](https://user-images.githubusercontent.com/14823909/129404475-74064736-e9d2-4e53-935f-d256391b2f12.png)
+![connection](https://user-images.githubusercontent.com/14823909/129433088-7f769f18-8f42-4aed-8b8e-8a096e8da241.png)
 
 ## 使い方
 
