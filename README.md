@@ -29,6 +29,7 @@ serial_flash_writer.py で想定している結線は以下の通りです(8pin 
 
 * ファイルの内容をメモリへ書き込む script として serial_flash_writer.py を実装しています。
 * serial_flash_writer を import して、from_file(<ファイル名>) で書き込みを行います。
+  * ファイルのバイトデータをメモリの先頭からそのまま書き込みます。HEXファイル等ではありません。
 * 以下は REPL 上での実行、出力例です。
 ```
 >>> import serial_flash_writer
